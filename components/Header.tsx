@@ -25,27 +25,25 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-blue-800 shadow-md" : "bg-transparent"}`}
     >
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-4 py-2">
         <div className="flex justify-between items-center">
-          <div>
-            <Image src="/images/Taylor-logo.png" alt="Logo" width={100} height={50} />
-           </div>
+            <Image src="/images/Taylor-logo.png" alt="Logo" width={98} height={70} />
           <div className="hidden md:flex space-x-4">
-            <Link href="#services" className={`${isScrolled ? "text-gray-600" : "text-white"} hover:text-blue-500`}>
+            <Link href="#services" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
               Services
             </Link>
-            <Link href="#about" className={`${isScrolled ? "text-gray-600" : "text-white"} hover:text-blue-500`}>
+            <Link href="#about" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
               About
             </Link>
-            <Link href="#projects" className={`${isScrolled ? "text-gray-600" : "text-white"} hover:text-blue-500`}>
+            <Link href="#projects" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
               Projects
             </Link>
           </div>
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Toggle menu">
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? <X className="h-12 w-12" /> : <Menu className="h-12 w-12 bg-white" />}
             </Button>
           </div>
           <Button

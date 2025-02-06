@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -10,7 +11,9 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white">Taylor Inc (Tailored Solutions)</h3>
+          <Link href="/">
+            <Image src="/images/Taylor-logo.png" alt="Logo" width={100} height={70} />
+          </Link>
             <p className="text-sm">Shaping the future through technology</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">

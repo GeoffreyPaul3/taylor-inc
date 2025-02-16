@@ -17,7 +17,7 @@ import { Wrench, Laptop, Activity, Car, Banknote, Brain } from "lucide-react"
 import { loadStripe } from "@stripe/stripe-js"
 
 // Initialize Stripe
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY!)
 
 const services = [
   {
@@ -87,10 +87,15 @@ export default function ServicesSection() {
   const [loading, setLoading] = useState<number | null>(null)
   const [email, setEmail] = useState("")
   const [paymentDialog, setPaymentDialog] = useState<number | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handlePurchase = async (priceId: string, index: number) => {
-    if (!email) return
+    if (!email) {
+      setError("Please enter your email address.")
+      return
+    }
     setLoading(index)
+    setError(null)
 
     try {
       const response = await fetch("/api/create-checkout-session", {
@@ -101,18 +106,27 @@ export default function ServicesSection() {
         body: JSON.stringify({ priceId, email }),
       })
 
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+
       const { sessionId } = await response.json()
       const stripe = await stripePromise
-      const { error } = await stripe!.redirectToCheckout({ sessionId })
+
+      if (!stripe) {
+        throw new Error("Stripe failed to load")
+      }
+
+      const { error } = await stripe.redirectToCheckout({ sessionId })
 
       if (error) {
-        console.error("Error:", error)
+        throw error
       }
     } catch (err) {
       console.error("Error:", err)
+      setError(err instanceof Error ? err.message : "An unknown error occurred")
     } finally {
       setLoading(null)
-      setPaymentDialog(null)
     }
   }
 
@@ -149,7 +163,10 @@ export default function ServicesSection() {
                   </Dialog>
                   <Dialog
                     open={paymentDialog === index}
-                    onOpenChange={() => setPaymentDialog(paymentDialog === index ? null : index)}
+                    onOpenChange={() => {
+                      setPaymentDialog(paymentDialog === index ? null : index)
+                      setError(null)
+                    }}
                   >
                     <DialogTrigger asChild>
                       <Button>Purchase Now</Button>
@@ -172,10 +189,11 @@ export default function ServicesSection() {
                             onChange={(e) => setEmail(e.target.value)}
                           />
                         </div>
+                        {error && <p className="text-red-500 text-sm">{error}</p>}
                         <Button
                           className="w-full"
                           onClick={() => handlePurchase(service.priceId, index)}
-                          disabled={loading === index || !email}
+                          disabled={loading === index}
                         >
                           {loading === index ? "Processing..." : `Pay $${service.price}`}
                         </Button>
@@ -191,4 +209,5 @@ export default function ServicesSection() {
     </section>
   )
 }
+
 

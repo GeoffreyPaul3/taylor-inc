@@ -17,7 +17,7 @@ import { Wrench, Laptop, Activity, Car, Banknote, Brain } from "lucide-react"
 import { loadStripe } from "@stripe/stripe-js"
 
 // Initialize Stripe
-const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY!)
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const services = [
   {

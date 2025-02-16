@@ -28,7 +28,7 @@ const services = [
     details:
       "Our expert team specializes in diagnosing and resolving complex system issues, optimizing performance, and designing robust architectures tailored to your specific needs.",
     price: 350,
-    priceId: "prod_RmbDiHAXJDy7j7",
+    priceId: "price_1Qt20dQ4Dzd2J7XZpXGY6mqi",
   },
   {
     title: "Software & Application Development",
@@ -38,7 +38,7 @@ const services = [
     details:
       "We deliver cutting-edge software solutions, from responsive web applications to powerful mobile apps, ensuring seamless integration with your existing systems and third-party APIs.",
     price: 300,
-    priceId: "prod_Rmc3k2mpciJ0HO", 
+    priceId: "price_1Qt2pJQ4Dzd2J7XZZ3lWA2nH",
   },
   {
     title: "Healthcare & Biomedical Systems",
@@ -48,7 +48,7 @@ const services = [
     details:
       "Our innovative healthcare solutions leverage the latest in AI and IoT technologies to improve patient care, streamline medical processes, and advance biomedical research capabilities.",
     price: 600,
-    priceId: "price_3456789012", // Replace with actual Stripe Price ID
+    priceId: "price_1Qt2qdQ4Dzd2J7XZskl1HAfQ",
   },
   {
     title: "Engineering & Automotive Systems",
@@ -58,7 +58,7 @@ const services = [
     details:
       "We provide advanced engineering tools and automotive solutions, incorporating AI and IoT to enhance design processes, improve vehicle performance, and enable smart manufacturing.",
     price: 400,
-    priceId: "price_4567890123", // Replace with actual Stripe Price ID
+    priceId: "price_1Qt2uNQ4Dzd2J7XZ4QNUsSim",
   },
   {
     title: "Finance, FinTech & Accounting Solutions",
@@ -68,7 +68,7 @@ const services = [
     details:
       "Our fintech solutions employ cutting-edge AI and blockchain technologies to enhance financial security, streamline transactions, and provide deep, actionable insights from complex financial data.",
     price: 250,
-    priceId: "price_5678901234", // Replace with actual Stripe Price ID
+    priceId: "price_1Qt2vnQ4Dzd2J7XZ9vCcgnBp", 
   },
   {
     title: "AI Systems Development & Integration",
@@ -78,7 +78,7 @@ const services = [
     details:
       "We develop and integrate sophisticated AI systems, from natural language processing to advanced machine learning models, tailored to solve your unique business challenges and drive innovation.",
     price: 500,
-    priceId: "price_6789012345", // Replace with actual Stripe Price ID
+    priceId: "price_1Qt2wvQ4Dzd2J7XZwrUxW1b2", 
   },
 ]
 

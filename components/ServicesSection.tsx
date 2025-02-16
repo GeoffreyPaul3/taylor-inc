@@ -28,7 +28,7 @@ const services = [
     details:
       "Our expert team specializes in diagnosing and resolving complex system issues, optimizing performance, and designing robust architectures tailored to your specific needs.",
     price: 350,
-    priceId: "price_1234567890", // Replace with actual Stripe Price ID
+    priceId: "prod_RmbDiHAXJDy7j7",
   },
   {
     title: "Software & Application Development",
@@ -38,7 +38,7 @@ const services = [
     details:
       "We deliver cutting-edge software solutions, from responsive web applications to powerful mobile apps, ensuring seamless integration with your existing systems and third-party APIs.",
     price: 300,
-    priceId: "price_2345678901", // Replace with actual Stripe Price ID
+    priceId: "prod_Rmc3k2mpciJ0HO", 
   },
   {
     title: "Healthcare & Biomedical Systems",

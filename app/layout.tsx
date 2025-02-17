@@ -24,23 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      <style>{`
-          @media print {
-            body * {
-              visibility: hidden;
-            }
-            .print-section, .print-section * {
-              visibility: visible;
-            }
-            .print-section {
-              position: absolute;
-              left: 0;
-              top: 0;
-            }
-          }
-        `}</style>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

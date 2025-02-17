@@ -132,8 +132,8 @@ export default function HeroSection() {
             <Link href="#contact">Get a Free Consultation</Link>
           </Button>
           <Button size="lg" variant="default" className="text-white border-white hover:bg-white/10">
-          <Link href="#contact" >
-            Request a Demo
+          <Link href="/quotation" >
+            Get Quotation
           </Link>
           </Button>
         </div>

@@ -125,7 +125,7 @@ export default function QuotationForm() {
           <CardHeader className="border-b">
             <div className="flex justify-between items-center">
               <Image
-                src="/images/Taylor-logo.jpg"
+                src="/images/Taylor-logo.png"
                 alt="Taylor Inc Logo"
                 width={200}
                 height={60}

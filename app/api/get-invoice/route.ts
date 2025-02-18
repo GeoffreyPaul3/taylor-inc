@@ -51,7 +51,10 @@ export async function GET(request: Request) {
     // Handle Stripe-specific errors
     if (err instanceof Stripe.errors.StripeError) {
       return NextResponse.json(
-        { error: "Failed to retrieve invoice. Please check the invoice ID." },
+        {
+          error: "Failed to retrieve invoice. Please check the invoice ID.",
+          details: err.message,
+        },
         { status: 400 }
       );
     }

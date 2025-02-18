@@ -58,10 +58,10 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Contact Us</h4>
             <address className="not-italic">
-              <p>123 Tech Street</p>
-              <p>Innovation City, IN 12345</p>
-              <p className="mt-2">Phone: (123) 456-7890</p>
-              <p>Email: info@innovativesystems.com</p>
+              <p>Near LifeGenix Insitute</p>
+              <p>17230 Dallas Pkwy, Dallas TX 75248</p>
+              <p className="mt-2">Phone: +1 (945) 264-4480</p>
+              <p>Email: info@taylorinsightgroup.com</p>
             </address>
           </div>
           <div>

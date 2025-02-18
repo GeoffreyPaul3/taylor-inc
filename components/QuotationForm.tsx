@@ -119,7 +119,6 @@ export default function QuotationForm() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Request a Quotation</h1>
       {quotation ? (
         <Card className="max-w-4xl mx-auto">
           <CardHeader className="border-b">
@@ -187,9 +186,9 @@ export default function QuotationForm() {
           <CardFooter className="flex justify-between border-t pt-6">
             <div>
               <p className="font-semibold">Taylor Inc (Tailored Solutions)</p>
-              <p>123 Business Street</p>
-              <p>City, State, ZIP</p>
-              <p>Phone: (123) 456-7890</p>
+              <p>17230 Dallas Pkwy</p>
+              <p>Dallas TX 75248</p>
+              <p>Phone: +1 (945) 264-4480</p>
             </div>
             <Button onClick={handlePrint}>Print Quotation</Button>
           </CardFooter>

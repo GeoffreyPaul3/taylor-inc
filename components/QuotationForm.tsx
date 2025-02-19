@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { Wrench, Laptop, Activity, Car, Banknote, Brain } from "lucide-react"
+import { Users, GraduationCap } from "lucide-react"
+import Link from "next/link"
 import Image from "next/image"
 
 type Quotation = {
@@ -25,54 +26,46 @@ type Quotation = {
   paymentTerms: string
 }
 
-const services = [
+const trainingsAndCourses = [
   {
-    id: "systems-design",
-    title: "Systems Design & Troubleshooting",
-    description:
-      "Custom software and application troubleshooting, embedded systems debugging, and system architecture improvement.",
-    icon: Wrench,
-    price: 350,
+    id: "ai-ml-fundamentals",
+    title: "Team Training: AI and Machine Learning Fundamentals",
+    description: "Comprehensive training for teams on AI and ML basics, tailored for your company's needs.",
+    icon: Users,
+    details:
+      "This intensive training program covers the fundamentals of AI and machine learning, including supervised and unsupervised learning, neural networks, and practical applications in business contexts.",
+    price: 1000,
+    type: "training",
   },
   {
-    id: "software-development",
-    title: "Software & Application Development",
-    description:
-      "Custom enterprise solutions, web and mobile app development, API integration, and industry-specific applications.",
-    icon: Laptop,
-    price: 300,
+    id: "advanced-data-analytics",
+    title: "Team Training: Advanced Data Analytics for Decision Makers",
+    description: "Empower your leadership with the skills to leverage data for strategic decision-making.",
+    icon: Users,
+    details:
+      "This executive-level training focuses on interpreting complex data analytics, understanding AI-driven insights, and applying data-driven strategies in your organization.",
+    price: 1500,
+    type: "training",
   },
   {
-    id: "healthcare-systems",
-    title: "Healthcare & Biomedical Systems",
-    description:
-      "AI-powered diagnostic tools, EMR systems, IoT-enabled health monitoring, and biomedical imaging software.",
-    icon: Activity,
-    price: 600,
+    id: "python-data-science",
+    title: "Individual Course: Python for Data Science",
+    description: "Master Python programming for data analysis, visualization, and machine learning.",
+    icon: GraduationCap,
+    details:
+      "This comprehensive course covers Python basics, data manipulation with pandas, data visualization with matplotlib and seaborn, and an introduction to machine learning with scikit-learn.",
+    price: 199,
+    type: "course",
   },
   {
-    id: "engineering-systems",
-    title: "Engineering & Automotive Systems",
-    description:
-      "CAD/CAM software, automotive AI systems, structural integrity simulation, and IoT for smart engineering.",
-    icon: Car,
-    price: 400,
-  },
-  {
-    id: "finance-solutions",
-    title: "Finance, FinTech & Accounting Solutions",
-    description:
-      "AI-driven fraud detection, financial data analytics, custom accounting software, and blockchain security solutions.",
-    icon: Banknote,
-    price: 250,
-  },
-  {
-    id: "ai-systems",
-    title: "AI Systems Development & Integration",
-    description:
-      "Machine learning models, AI chatbots, NLP for business applications, and AI-driven cybersecurity solutions.",
-    icon: Brain,
-    price: 500,
+    id: "deep-learning-neural-networks",
+    title: "Individual Course: Deep Learning and Neural Networks",
+    description: "Dive deep into the world of neural networks and their applications.",
+    icon: GraduationCap,
+    details:
+      "Explore the architecture and training of neural networks, convolutional and recurrent neural networks, and their applications in computer vision and natural language processing.",
+    price: 249,
+    type: "course",
   },
 ]
 
@@ -100,12 +93,12 @@ export default function QuotationForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const service = services.find((s) => s.id === formData.selectedService)
-    if (service) {
+    const trainingOrCourse = trainingsAndCourses.find((s) => s.id === formData.selectedService)
+    if (trainingOrCourse) {
       setQuotation({
         ...formData,
-        service: service.title,
-        price: service.price,
+        service: trainingOrCourse.title,
+        price: trainingOrCourse.price,
         quotationNumber: Math.floor(100000 + Math.random() * 900000),
         date: new Date().toLocaleDateString(),
         validUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString(),
@@ -123,13 +116,15 @@ export default function QuotationForm() {
         <Card className="max-w-4xl mx-auto">
           <CardHeader className="border-b">
             <div className="flex justify-between items-center">
+              <Link href="/">
               <Image
-                src="/images/Taylor-logo.png"
+                src="/images/Taylor.png"
                 alt="Taylor Inc Logo"
-                width={200}
-                height={60}
+                width={120}
+                height={80}
                 className="mb-4"
               />
+              </Link>
               <div className="text-right">
                 <CardTitle className="text-2xl">Official Quotation</CardTitle>
                 <CardDescription>Quotation #{quotation?.quotationNumber}</CardDescription>
@@ -155,9 +150,9 @@ export default function QuotationForm() {
               </div>
             </div>
             <div className="space-y-2">
-              <h3 className="font-semibold">Service Details:</h3>
+              <h3 className="font-semibold">Training/Course Details:</h3>
               <p>
-                <strong>Service:</strong> {quotation?.service}
+                <strong>Training/Course:</strong> {quotation?.service}
               </p>
               <p>
                 <strong>Description:</strong> {quotation?.projectDescription}
@@ -180,7 +175,7 @@ export default function QuotationForm() {
               <p>1. This quotation is valid for 30 days from the date of issue.</p>
               <p>2. The final price may vary based on the actual scope of work.</p>
               <p>3. Any changes to the project requirements may affect the timeline and cost.</p>
-              <p>4. A 50% deposit is required to commence the project.</p>
+              <p>4. A 50% deposit is required to commence the training/course.</p>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between border-t pt-6">
@@ -223,16 +218,16 @@ export default function QuotationForm() {
           </div>
           <div>
             <label htmlFor="service" className="block text-sm font-medium text-gray-700">
-              Service
+              Training/Course
             </label>
             <Select onValueChange={(value) => handleSelectChange("selectedService", value)} required>
               <SelectTrigger>
-                <SelectValue placeholder="Select a service" />
+                <SelectValue placeholder="Select a training/course" />
               </SelectTrigger>
               <SelectContent>
-                {services.map((service) => (
-                  <SelectItem key={service.id} value={service.id}>
-                    {service.title}
+                {trainingsAndCourses.map((trainingOrCourse) => (
+                  <SelectItem key={trainingOrCourse.id} value={trainingOrCourse.id}>
+                    {trainingOrCourse.title}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -287,4 +282,3 @@ export default function QuotationForm() {
     </div>
   )
 }
-

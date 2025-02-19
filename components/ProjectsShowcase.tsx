@@ -17,28 +17,28 @@ const projects = [
   {
     title: "AI-Powered Healthcare Assistant",
     description: "An intelligent chatbot for patient triage and medical advice.",
-    image: "/images/Ai.jpg",
+    image: "/images/Ai-health.jpg",
     details:
       "This AI-powered healthcare assistant uses natural language processing and machine learning to provide initial patient triage, offer basic medical advice, and schedule appointments. It has significantly reduced wait times and improved patient satisfaction in several major hospitals.",
   },
   {
     title: "Smart City Traffic Management",
     description: "IoT-based system for real-time traffic optimization.",
-    image: "/images/Traffic.jpg",
+    image: "/images/Traffic-ai.jpg",
     details:
       "Our smart city traffic management system utilizes a network of IoT sensors and AI algorithms to analyze traffic patterns in real-time. It dynamically adjusts traffic light timings and provides route recommendations, resulting in a 30% reduction in average commute times.",
   },
   {
     title: "Blockchain-Secured Financial Platform",
     description: "Decentralized finance solution for secure, transparent transactions.",
-    image: "/images/Blockchain.jpg",
+    image: "/images/Crypto.jpg",
     details:
       "This blockchain-based financial platform provides a secure and transparent environment for various financial transactions. It includes features like smart contracts for automated agreements, decentralized identity verification, and immutable transaction records, enhancing trust and efficiency in financial operations.",
   },
   {
     title: "Augmented Reality for Industrial Maintenance",
     description: "AR application for real-time guidance in complex machinery maintenance.",
-    image: "/images/Industrial.jpg",
+    image: "/images/Aug-reality.jpg",
     details:
       "Our augmented reality solution for industrial maintenance overlays digital information onto physical machinery, providing technicians with real-time guidance for repairs and maintenance. This has led to a 40% reduction in downtime and a 25% increase in first-time fix rates.",
   },
@@ -58,7 +58,7 @@ export default function ProjectsShowcase() {
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 width={300}
-                height={200}
+                height={300}
                 className="w-full h-48 object-cover"
               />
               <CardHeader>

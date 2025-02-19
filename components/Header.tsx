@@ -30,7 +30,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-2">
         <div className="flex justify-between items-center">
           <Link href="/">
-            <Image src="/images/Taylor-logo.png" alt="Logo" width={98} height={70} />
+            <Image src="/images/Taylor.png" alt="Logo" width={100} height={70} />
           </Link>  
           <div className="hidden md:flex space-x-4">
             <Link href="#services" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>

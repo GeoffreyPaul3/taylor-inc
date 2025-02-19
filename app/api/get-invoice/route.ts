@@ -7,18 +7,21 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const invoiceId = searchParams.get("invoiceId");
+  const sessionId = searchParams.get("sessionId");
 
-  if (!invoiceId) {
+  if (!sessionId) {
     return NextResponse.json(
-      { error: "Invoice ID is required" },
+      { error: "Session ID is required" },
       { status: 400 }
     );
   }
 
   try {
-    // Retrieve the invoice from Stripe
-    const invoice = await stripe.invoices.retrieve(invoiceId);
+    // Retrieve the checkout session
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    // Retrieve the invoice associated with the session
+    const invoice = await stripe.invoices.retrieve(session.invoice as string);
 
     // Check if the invoice has a hosted PDF URL
     if (!invoice.hosted_invoice_url) {
@@ -28,23 +31,8 @@ export async function GET(request: Request) {
       );
     }
 
-    // Fetch the PDF file from the hosted URL
-    const pdfResponse = await fetch(invoice.hosted_invoice_url);
-
-    if (!pdfResponse.ok) {
-      throw new Error("Failed to fetch the invoice PDF");
-    }
-
-    // Convert the PDF response to a buffer
-    const pdfBuffer = await pdfResponse.arrayBuffer();
-
-    // Return the PDF file as a downloadable response
-    return new NextResponse(pdfBuffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="invoice-${invoiceId}.pdf"`,
-      },
-    });
+    // Return the hosted invoice URL
+    return NextResponse.json({ invoiceUrl: invoice.hosted_invoice_url });
   } catch (err) {
     console.error("Error retrieving invoice:", err);
 
@@ -52,7 +40,7 @@ export async function GET(request: Request) {
     if (err instanceof Stripe.errors.StripeError) {
       return NextResponse.json(
         {
-          error: "Failed to retrieve invoice. Please check the invoice ID.",
+          error: "Failed to retrieve invoice. Please check the session ID.",
           details: err.message,
         },
         { status: 400 }

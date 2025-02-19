@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
           <Link href="/">
-            <Image src="/images/Taylor-logo.png" alt="Logo" width={100} height={70} />
+            <Image src="/images/Taylor.png" alt="Logo" width={120} height={80} />
           </Link>
             <p className="text-sm">Shaping the future through technology</p>
             <div className="flex space-x-4">

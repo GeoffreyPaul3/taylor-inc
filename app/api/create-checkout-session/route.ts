@@ -12,12 +12,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 const PRICE_ID_TO_AMOUNT: Record<string, number> = {
-  price_1Qt20dQ4Dzd2J7XZpXGY6mqi: 35000, // $350 in cents
-  price_1Qt2pJQ4Dzd2J7XZZ3lWA2nH: 30000, // $300 in cents
-  price_1Qt2qdQ4Dzd2J7XZskl1HAfQ: 60000, // $600 in cents
-  price_1Qt2uNQ4Dzd2J7XZ4QNUsSim: 40000, // $400 in cents
-  price_1Qt2vnQ4Dzd2J7XZ9vCcgnBp: 25000, // $250 in cents
-  price_1Qt2wvQ4Dzd2J7XZwrUxW1b2: 50000, // $500 in cents
+  price_1Qu8ZxQ4Dzd2J7XZc2990Cvbi: 100000, // $1000 in cents
+  price_1Qu8dTQ4Dzd2J7XZFb0FxbR1:  150000, // $1500 in cents
+  price_1Qu8edQ4Dzd2J7XZqgJNPUq4:  19900, // $199 in cents
+  price_1Qu8iYQ4Dzd2J7XZxAkRZXMG:  24900, // $249 in cents
 };
 
 export async function POST(request: Request) {

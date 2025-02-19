@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-blue-800 shadow-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-gradient-to-br from-blue-900 to-green-600 shadow-md" : "bg-transparent"}`}
     >
       <nav className="container mx-auto px-4 py-2">
         <div className="flex justify-between items-center">
@@ -35,6 +35,9 @@ export default function Header() {
           <div className="hidden md:flex space-x-4">
             <Link href="#services" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
               Services
+            </Link>
+            <Link href="#trainings-and-courses" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
+              Trainings & Courses
             </Link>
             <Link href="#about" className={`${isScrolled ? "text-white" : "text-white"} hover:text-blue-500`}>
               About
@@ -61,6 +64,9 @@ export default function Header() {
           <div className="container mx-auto px-6 py-4 space-y-4">
             <Link href="#services" className="block text-gray-600 hover:text-blue-500" onClick={toggleMobileMenu}>
               Services
+            </Link>
+            <Link href="#trainings-and-courses" className="block text-gray-600 hover:text-blue-500" onClick={toggleMobileMenu}>
+             Trainings & Courses
             </Link>
             <Link href="#about" className="block text-gray-600 hover:text-blue-500" onClick={toggleMobileMenu}>
               About

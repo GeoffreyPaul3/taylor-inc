@@ -6,6 +6,7 @@ import dynamic from "next/dynamic"
 import type { Engine } from "tsparticles-engine"
 import { Loader2 } from "lucide-react"
 import Link from "next/link"
+import { RequestDemoDialog } from "./RequestDemoDialog"
 
 const Particles = dynamic(() => import("react-tsparticles").then((mod) => mod.default), {
   ssr: false,
@@ -42,7 +43,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 to-indigo-800">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 to-blue-900">
       {isClient && (
         <Particles
           id="tsparticles"
@@ -128,9 +129,11 @@ export default function HeroSection() {
           mission is to drive innovation and create intelligent solutions that shape the future of technology.
         </p>
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up animation-delay-400">
+        <RequestDemoDialog>
           <Button size="lg" className="bg-white text-blue-900 font-medium hover:bg-blue-100">
-            <Link href="#contact">Get a Free Consultation</Link>
+            Request a Demo
           </Button>
+        </RequestDemoDialog>
           <Button size="lg" variant="default" className="text-white border-white hover:bg-white/10">
           <Link href="/quotation" >
             Get Quotation

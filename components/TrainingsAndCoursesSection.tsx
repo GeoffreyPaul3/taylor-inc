@@ -10,8 +10,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog"
-import { Users, GraduationCap } from "lucide-react"
+import { BookOpen, GraduationCap, Users } from "lucide-react"
 import { loadStripe } from "@stripe/stripe-js"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -66,6 +68,8 @@ export default function TrainingsAndCoursesSection() {
   const [email, setEmail] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<number | null>(null)
+  const [showContent, setShowContent] = useState(false)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
   const handlePurchase = async (priceId: string, index: number) => {
     if (!email) {
@@ -111,40 +115,85 @@ export default function TrainingsAndCoursesSection() {
   return (
     <section id="trainings-and-courses" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Trainings and Courses</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {trainingsAndCourses.map((item, index) => (
-            <Card key={index} className="transition-all duration-300 hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <item.icon className="h-8 w-8 text-blue-600" />
-                  {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 mb-4">{item.description}</CardDescription>
-                <p className="text-2xl font-bold text-blue-600 mb-4">{`$${item.price}`}</p>
-                <div className="flex space-x-2">
-                  <Dialog
-                    open={paymentDialog === index}
-                    onOpenChange={() => setPaymentDialog(paymentDialog === index ? null : index)}
-                  >
-                    <DialogTrigger asChild>
-                      <Button variant="outline">Learn More</Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>{item.title}</DialogTitle>
-                        <DialogDescription>{item.details}</DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
-                  <Button onClick={() => setPaymentDialog(index)}>Purchase Now</Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">Trainings and Courses</h2>
+
+        {!showContent && (
+          <Card
+            className="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+            onClick={() => setShowConfirmDialog(true)}
+          >
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <BookOpen className="h-8 w-8 text-blue-600" />
+                Discover Our Trainings and Courses
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>
+                Click to explore our range of team trainings and individual courses designed to enhance your skills in
+                AI, machine learning, and data science.
+              </CardDescription>
+            </CardContent>
+          </Card>
+        )}
+
+        <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>View Trainings and Courses?</DialogTitle>
+              <DialogDescription>Would you like to see our available trainings and courses?</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">No, thanks</Button>
+              </DialogClose>
+              <Button
+                onClick={() => {
+                  setShowContent(true)
+                  setShowConfirmDialog(false)
+                }}
+              >
+                Yes, show me
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {showContent && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            {trainingsAndCourses.map((item, index) => (
+              <Card key={index} className="transition-all duration-300 hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-2xl">
+                    <item.icon className="h-8 w-8 text-blue-600" />
+                    {item.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600 mb-4">{item.description}</CardDescription>
+                  <p className="text-2xl font-bold text-blue-600 mb-4">{`$${item.price}`}</p>
+                  <div className="flex space-x-2">
+                    <Dialog
+                      open={paymentDialog === index}
+                      onOpenChange={() => setPaymentDialog(paymentDialog === index ? null : index)}
+                    >
+                      <DialogTrigger asChild>
+                        <Button variant="outline">Learn More</Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>{item.title}</DialogTitle>
+                          <DialogDescription>{item.details}</DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                    <Button onClick={() => setPaymentDialog(index)}>Purchase Now</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
       {trainingsAndCourses.map((item, index) => (
         <Dialog
